@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassicBid - Dashboard</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="logo-section">
+            <div class="logo-icon">🏎️</div>
+            <div class="logo-text">
+                <h1>Druk ClassicBid Auctions</h1>
+                <p>Premium Classic Auto Marketplace</p>
+            </div>
+        </div>
+        <div class="user-section">
+            <div class="notification-icon">
+                🔔
+                <span class="notification-badge">4</span>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">JD</div>
+                <div class="user-details">
+                    <h3>John Dealer</h3>
+                    <p>Administrator</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar" id="leftSidebar">
+            <div class="sidebar-header">
+                <span class="sidebar-title">Navigation</span>
+                <button class="collapse-btn" onclick="toggleLeftSidebar()">
+                    <span id="leftArrow">◀</span>
+                </button>
+            </div>
+            <div class="nav-item active">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">🏛️</span>
+                <span>Auction Houses</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">🚗</span>
+                <span>My Vehicles</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">🎯</span>
+                <span>Watchlist</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">👥</span>
+                <span>Sellers</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">📅</span>
+                <span>Schedule</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">🌐</span>
+                <span>Network</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <div class="sticky-header" id="stickyHeader">
+                <!-- Welcome Banner -->
+                <div class="welcome-banner">
+                    <h2>Welcome back, John Dealer!</h2>
+                    <p>Here's your personalized classic car auction dashboard</p>
+                </div>
+
+                <!-- Key Statistics -->
+                <div class="key-statistics">
+                    <h2 class="section-header">Vehicles Matched to Your Profile</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>24</h3>
+                                <p>Matching Auctions</p>
+                            </div>
+                            <div class="stat-icon icon-blue">🎯</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>12</h3>
+                                <p>Active Bids</p>
+                            </div>
+                            <div class="stat-icon icon-green">✅</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>8</h3>
+                                <p>Watchlist Items</p>
+                            </div>
+                            <div class="stat-icon icon-purple">👁️</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>156</h3>
+                                <p>Live Auctions</p>
+                            </div>
+                            <div class="stat-icon icon-orange">🔴</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>3</h3>
+                                <p>Ending Soon</p>
+                            </div>
+                            <div class="stat-icon icon-gold">⏰</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Auctions - Full Width -->
+            <div class="two-column-layout">
+                <div class="live-auctions">
+                    <div class="section-title">
+                        <h3>
+                            <span class="live-badge">🔴 LIVE</span>
+                            Current Auctions
+                        </h3>
+                        <a href="#" class="view-all-link">View All</a>
+                    </div>
+                    
+                    <a class="auction-item" href="car-details.html" target="_blank">
+                        <div class="auction-icon" style="background: rgba(218,165,32,0.1); color: #DAA520;">🏎️</div>
+                        <div class="auction-details">
+                            <h4>1967 Shelby GT500 Eleanor</h4>
+                            <p>428 V8 • 47,000 miles • Pristine</p>
+                        </div>
+                        <div class="auction-time">02:14:33</div>
+                    </a>
+
+                    <div class="auction-item">
+                        <div class="auction-icon" style="background: rgba(34,197,94,0.1); color: #22c55e;">🚗</div>
+                        <div class="auction-details">
+                            <h4>1963 Corvette Split Window</h4>
+                            <p>327 V8 • Numbers Matching</p>
+                        </div>
+                        <div class="auction-time">01:42:18</div>
+                    </div>
+
+                    <div class="auction-item">
+                        <div class="auction-icon" style="background: rgba(239,68,68,0.1); color: #ef4444;">🏁</div>
+                        <div class="auction-details">
+                            <h4>1970 Plymouth Hemi Cuda</h4>
+                            <p>426 Hemi • 4-Speed • Tor Red</p>
+                        </div>
+                        <div class="auction-time">03:08:45</div>
+                    </div>
+
+                    <div class="auction-item">
+                        <div class="auction-icon" style="background: rgba(59,130,246,0.1); color: #3b82f6;">🚙</div>
+                        <div class="auction-details">
+                            <h4>1969 Dodge Charger R/T</h4>
+                            <p>440 Magnum • Factory A/C</p>
+                        </div>
+                        <div class="auction-time">00:58:22</div>
+                    </div>
+
+                    <div class="auction-item">
+                        <div class="auction-icon" style="background: rgba(168,85,247,0.1); color: #a855f7;">🏎️</div>
+                        <div class="auction-details">
+                            <h4>1971 Ford Mustang Boss 351</h4>
+                            <p>Boss 351 V8 • Bright Yellow</p>
+                        </div>
+                        <div class="auction-time">04:33:12</div>
+                    </div>
+
+                    <div class="auction-item">
+                        <div class="auction-icon" style="background: rgba(218,165,32,0.1); color: #DAA520;">🚗</div>
+                        <div class="auction-details">
+                            <h4>1955 Chevrolet Bel Air</h4>
+                            <p>327 V8 • Restored • Two-Tone</p>
+                        </div>
+                        <div class="auction-time">05:22:45</div>
+                    </div>
+
+                    <div class="auction-item">
+                        <div class="auction-icon" style="background: rgba(34,197,94,0.1); color: #22c55e;">🏁</div>
+                        <div class="auction-details">
+                            <h4>1970 Chevrolet Chevelle SS</h4>
+                            <p>454 LS6 • 4-Speed • Cranberry Red</p>
+                        </div>
+                        <div class="auction-time">02:55:18</div>
+                    </div>
+
+                    <div class="auction-item">
+                        <div class="auction-icon" style="background: rgba(239,68,68,0.1); color: #ef4444;">🚙</div>
+                        <div class="auction-details">
+                            <h4>1969 Pontiac GTO Judge</h4>
+                            <p>400 V8 • Ram Air IV • Original</p>
+                        </div>
+                        <div class="auction-time">01:33:27</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row Placeholders -->
+            <div class="bottom-row">
+                <div class="placeholder-card">
+                    <h3>High Match Vehicles</h3>
+                    <div class="placeholder-content">
+                        <div class="placeholder-item">
+                            <span>1968 Camaro SS</span>
+                            <span style="color: #22c55e;">96%</span>
+                        </div>
+                        <div class="placeholder-item">
+                            <span>1970 Chevelle SS 454</span>
+                            <span style="color: #22c55e;">94%</span>
+                        </div>
+                        <div class="placeholder-item">
+                            <span>1969 Mustang Mach 1</span>
+                            <span style="color: #22c55e;">92%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="placeholder-card">
+                    <h3>Recent Purchases</h3>
+                    <div class="placeholder-content">
+                        <div class="placeholder-item">
+                            <span>1965 Mustang Fastback</span>
+                            <span>$45,000</span>
+                        </div>
+                        <div class="placeholder-item">
+                            <span>1970 Challenger R/T</span>
+                            <span>$62,500</span>
+                        </div>
+                        <div class="placeholder-item">
+                            <span>1969 Camaro Z28</span>
+                            <span>$58,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="placeholder-card">
+                    <h3>Portfolio Performance</h3>
+                    <div class="placeholder-content">
+                        <div class="placeholder-item">
+                            <span>Total Invested</span>
+                            <span>$425,000</span>
+                        </div>
+                        <div class="placeholder-item">
+                            <span>Current Value</span>
+                            <span>$512,000</span>
+                        </div>
+                        <div class="placeholder-item">
+                            <span>ROI</span>
+                            <span style="color: #22c55e;">+20.5%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="placeholder-card">
+                    <h3>Popular Categories</h3>
+                    <div class="placeholder-content">
+                        <div class="placeholder-item">
+                            <span>Muscle Cars</span>
+                            <span>234 active</span>
+                        </div>
+                        <div class="placeholder-item">
+                            <span>Sports Cars</span>
+                            <span>156 active</span>
+                        </div>
+                        <div class="placeholder-item">
+                            <span>Luxury Classics</span>
+                            <span>89 active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar" id="rightSidebar">
+            <div class="sidebar-header">
+                <span class="sidebar-title">Quick Actions</span>
+                <button class="collapse-btn" onclick="toggleRightSidebar()">
+                    <span id="rightArrow">▶</span>
+                </button>
+            </div>
+            
+            <div class="right-sidebar-content">
+                <div class="quick-action">
+                    <div class="action-icon">🏛️</div>
+                    <div class="action-details">
+                        <h4>Add New Auction</h4>
+                        <p>List your classic vehicle</p>
+                    </div>
+                </div>
+
+                <div class="quick-action">
+                    <div class="action-icon">🚗</div>
+                    <div class="action-details">
+                        <h4>Browse Inventory</h4>
+                        <p>Explore available cars</p>
+                    </div>
+                </div>
+
+                <div class="quick-action">
+                    <div class="action-icon">📅</div>
+                    <div class="action-details">
+                        <h4>Schedule Viewing</h4>
+                        <p>Book an inspection</p>
+                    </div>
+                </div>
+
+                <div class="quick-action">
+                    <div class="action-icon">⚙️</div>
+                    <div class="action-details">
+                        <h4>Update Preferences</h4>
+                        <p>Modify your profile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let lastScrollTop = 0;
+        const mainContent = document.getElementById('mainContent');
+        const stickyHeader = document.getElementById('stickyHeader');
+
+        // Scroll detection for hiding/showing header
+        mainContent.addEventListener('scroll', function() {
+            const scrollTop = mainContent.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                stickyHeader.classList.remove('visible');
+            } else {
+                // Scrolling up
+                stickyHeader.classList.add('visible');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Initialize as visible
+        stickyHeader.classList.add('visible');
+
+        // Toggle left sidebar
+        function toggleLeftSidebar() {
+            const sidebar = document.getElementById('leftSidebar');
+            const arrow = document.getElementById('leftArrow');
+            sidebar.classList.toggle('collapsed');
+            arrow.textContent = sidebar.classList.contains('collapsed') ? '▶' : '◀';
+        }
+
+        // Toggle right sidebar
+        function toggleRightSidebar() {
+            const sidebar = document.getElementById('rightSidebar');
+            const arrow = document.getElementById('rightArrow');
+            sidebar.classList.toggle('collapsed');
+            arrow.textContent = sidebar.classList.contains('collapsed') ? '◀' : '▶';
+        }
+
+        // Update countdown timers
+        function updateTimers() {
+            const timers = document.querySelectorAll('.auction-time');
+            timers.forEach(timer => {
+                if (timer.textContent.includes(':')) {
+                    let time = timer.textContent.split(':');
+                    let hours = parseInt(time[0]);
+                    let minutes = parseInt(time[1]);
+                    let seconds = parseInt(time[2]);
+                    
+                    seconds--;
+                    if (seconds < 0) {
+                        seconds = 59;
+                        minutes--;
+                    }
+                    if (minutes < 0) {
+                        minutes = 59;
+                        hours--;
+                    }
+                    if (hours < 0) hours = 0;
+                    
+                    timer.textContent = 
+                        String(hours).padStart(2, '0') + ':' + 
+                        String(minutes).padStart(2, '0') + ':' + 
+                        String(seconds).padStart(2, '0');
+                }
+            });
+        }
+        
+        setInterval(updateTimers, 1000);
+
+        // Add click handlers
+        document.querySelectorAll('.auction-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                const href = this.getAttribute('href') || this.dataset.href;
+                const target = this.getAttribute('target');
+                if (href) {
+                    e.preventDefault();
+                    if (target) {
+                        window.open(href, target);
+                    } else {
+                        window.location.href = href;
+                    }
+                    return;
+                }
+                alert('Opening auction details...');
+            });
+        });
+
+        document.querySelectorAll('.quick-action').forEach(action => {
+            action.addEventListener('click', function() {
+                const actionName = this.querySelector('h4').textContent;
+                alert(`Opening: ${actionName}`);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+    // Find the banner and the main content container (fallbacks included)
+    setTimeout(function() {
+        var banner = document.querySelector('.welcome-banner');
+        var content = document.getElementById('mainContent') || document.querySelector('.main-content');
+
+        if (!banner) return;
+
+        // Ensure banner is visible so the fade animation can be seen
+        banner.style.display = '';
+        banner.style.opacity = '1';
+
+        // Trigger fade out animation after a delay
+        setTimeout(function() {
+            banner.classList.add('fade-out');
+            setTimeout(function() {
+                if (banner.parentNode) banner.parentNode.removeChild(banner);
+                if (content) content.style.marginTop = '0';
+            }, 3000); // keep in sync with animation duration
+        }, 5000);
+    }, 2000);
+
+    // Add fade-out animation keyframes (keeps opacity animation only)
+    var style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .welcome-banner.fade-out {
+            animation: fadeOut 3s forwards;
+        }
+    `;
+    document.head.appendChild(style);
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Detail</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="logo-section">
+            <div class="logo-icon">🏎️</div>
+            <div class="logo-text">
+                <h1>Druk ClassicBid Auctions</h1>
+                <p>Premium Classic Auto Marketplace</p>
+            </div>
+        </div>
+        <div class="user-section">
+            <div class="notification-icon">
+                🔔
+                <span class="notification-badge">4</span>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">JD</div>
+                <div class="user-details">
+                    <h3>John Dealer</h3>
+                    <p>Administrator</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+        <!-- Left Sidebar -->
+        <aside class="left-sidebar">
+            <div class="sidebar-header">
+                <h3>Sidebar Title</h3>
+                <button class="collapse-btn"><i class="fas fa-angle-left"></i></button>
+            </div>
+            <ul class="nav-list">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Current Auctions</a></li>
+                <li><a href="#">Past Auctions</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="car-detail">
+                <h2>Car Detail</h2>
+                <div class="car-info">
+                    <img src="path/to/car-image.jpg" alt="Car Image">
+                    <div class="car-description">
+                        <h3>Make: Ford</h3>
+                        <p>Model: Mustang GT</p>
+                        <p>Year: 1967</p>
+                        <p>Mileage: 50,000 miles</p>
+                        <p>Condition: Excellent</p>
+                    </div>
+                </div>
+                <div class="bid-section">
+                    <h3>Bid Now</h3>
+                    <form action="#" method="post">
+                        <label for="bid-amount">Bid Amount:</label>
+                        <input type="number" id="bid-amount" name="bid-amount" required>
+                        <button type="submit">Place Bid</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <h3>Quick Actions</h3>
+            <ul class="quick-actions">
+                <li><a href="#"><i class="fas fa-envelope"></i> Contact Seller</a></li>
+                <li><a href="#"><i class="fas fa-share-alt"></i> Share on Social Media</a></li>
+                <li><a href="#"><i class="fas fa-star"></i> Add to Watchlist</a></li>
+            </ul>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2023 Auction House. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
