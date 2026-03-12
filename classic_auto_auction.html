@@ -39,9 +39,9 @@
             <!-- Sub-header buttons (replaces previous key statistics) -->
             <div class="sub-buttons">
                 <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-tag" aria-hidden="true"></i></span>Offers</button>
-                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-cart-arrow-down" aria-hidden="true"></i></span>Purchased</button>
+                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i></span>Purchased</button>
                 <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span>Watch List</button>
-                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i></span>Sold</button>
+                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-money-check-dollar" aria-hidden="true"></i></span>Sold</button>
             </div>
 
             <div class="below-header-search">
@@ -54,8 +54,44 @@
                         placeholder="Search by model, make, or spec"
                         aria-label="Search current auctions"
                     >
-                    <button type="submit" class="search-btn" aria-label="Run auction search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+                    <button type="button" id="searchTriggerBtn" class="search-btn" aria-label="Run auction search">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        <span id="activeFilterBadge" class="active-filter-badge" hidden>0</span>
+                    </button>
                 </form>
+
+                <div id="searchFiltersPanel" class="search-filters-panel" hidden>
+                    <h4>Search Filters</h4>
+
+                    <div class="filter-group">
+                        <p>Make</p>
+                        <label><input type="checkbox" data-filter-group="make" value="ford"> Ford</label>
+                        <label><input type="checkbox" data-filter-group="make" value="chevrolet"> Chevrolet</label>
+                        <label><input type="checkbox" data-filter-group="make" value="cadillac"> Cadillac</label>
+                        <label><input type="checkbox" data-filter-group="make" value="porsche"> Porsche</label>
+                        <label><input type="checkbox" data-filter-group="make" value="jaguar"> Jaguar</label>
+                        <label><input type="checkbox" data-filter-group="make" value="mercury"> Mercury</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <p>Engine</p>
+                        <label><input type="checkbox" data-filter-group="engine" value="v8"> V8</label>
+                        <label><input type="checkbox" data-filter-group="engine" value="inline-6"> Inline-6</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <p>Body Style</p>
+                        <label><input type="checkbox" data-filter-group="body" value="convertible"> Convertible</label>
+                        <label><input type="checkbox" data-filter-group="body" value="coupe"> Coupe</label>
+                        <label><input type="checkbox" data-filter-group="body" value="hardtop"> Hardtop</label>
+                        <label><input type="checkbox" data-filter-group="body" value="wagon"> Wagon</label>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button type="button" id="applySearchFiltersBtn" class="filter-btn apply">Apply Filters</button>
+                        <button type="button" id="clearSearchFiltersBtn" class="filter-btn clear">Clear</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -379,295 +415,6 @@
         </div>
     </footer>
 
-    <script>
-        let lastScrollTop = 0;
-        const mainContent = document.getElementById('mainContent');
-        const stickyHeader = document.getElementById('stickyHeader');
-        const topHeader = document.querySelector('.top-header');
-
-        function updateStickyOffsets() {
-            if (!topHeader) return;
-            const headerHeight = Math.ceil(topHeader.getBoundingClientRect().height);
-            document.documentElement.style.setProperty('--top-header-height', `${headerHeight}px`);
-        }
-
-        // Scroll detection for hiding/showing header
-        mainContent.addEventListener('scroll', function() {
-            const scrollTop = mainContent.scrollTop;
-            
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                // Scrolling down
-                stickyHeader.classList.remove('visible');
-            } else {
-                // Scrolling up
-                stickyHeader.classList.add('visible');
-            }
-            
-            lastScrollTop = scrollTop;
-        });
-
-        // Initialize as visible
-        stickyHeader.classList.add('visible');
-        updateStickyOffsets();
-        window.addEventListener('resize', updateStickyOffsets);
-
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-theme');
-            themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
-        });
-
-        // Toggle left sidebar
-        function toggleLeftSidebar() {
-            const sidebar = document.getElementById('leftSidebar');
-            const arrow = document.getElementById('leftArrow');
-            sidebar.classList.toggle('collapsed');
-            arrow.textContent = sidebar.classList.contains('collapsed') ? '▶' : '◀';
-        }
-
-        // Toggle right sidebar
-        function toggleRightSidebar() {
-            const sidebar = document.getElementById('rightSidebar');
-            const arrow = document.getElementById('rightArrow');
-            sidebar.classList.toggle('collapsed');
-            arrow.textContent = sidebar.classList.contains('collapsed') ? '◀' : '▶';
-        }
-
-        // Update countdown timers
-        function updateTimers() {
-            const timers = document.querySelectorAll('.auction-time');
-            timers.forEach(timer => {
-                if (timer.textContent.includes(':')) {
-                    let time = timer.textContent.split(':');
-                    let hours = parseInt(time[0]);
-                    let minutes = parseInt(time[1]);
-                    let seconds = parseInt(time[2]);
-                    
-                    seconds--;
-                    if (seconds < 0) {
-                        seconds = 59;
-                        minutes--;
-                    }
-                    if (minutes < 0) {
-                        minutes = 59;
-                        hours--;
-                    }
-                    if (hours < 0) hours = 0;
-                    
-                    timer.textContent = 
-                        String(hours).padStart(2, '0') + ':' + 
-                        String(minutes).padStart(2, '0') + ':' + 
-                        String(seconds).padStart(2, '0');
-                }
-            });
-        }
-        
-        setInterval(updateTimers, 1000);
-
-        // Add click handlers
-        document.querySelectorAll('.auction-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                const href = this.getAttribute('href') || this.dataset.href;
-                const target = this.getAttribute('target');
-                if (href) {
-                    e.preventDefault();
-                    if (target) {
-                        window.open(href, target);
-                    } else {
-                        window.location.href = href;
-                    }
-                    return;
-                }
-                alert('Opening auction details...');
-            });
-        });
-
-        document.querySelectorAll('.quick-action').forEach(action => {
-            action.addEventListener('click', function() {
-                const actionName = this.querySelector('h4').textContent;
-                alert(`Opening: ${actionName}`);
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-    updateStickyOffsets();
-    // Find the banner and the main content container (fallbacks included)
-    setTimeout(function() {
-        var banner = document.querySelector('.welcome-banner');
-        var content = document.getElementById('mainContent') || document.querySelector('.main-content');
-
-        if (!banner) return;
-
-        // Ensure banner is visible so the fade animation can be seen
-        banner.style.display = '';
-        banner.style.opacity = '1';
-
-        // Trigger fade out animation after a delay
-        setTimeout(function() {
-            banner.classList.add('fade-out');
-            setTimeout(function() {
-                if (banner.parentNode) banner.parentNode.removeChild(banner);
-                if (content) content.style.marginTop = '0';
-            }, 3000); // keep in sync with animation duration
-        }, 5000);
-    }, 2000);
-
-    // Add fade-out animation keyframes (keeps opacity animation only)
-    var style = document.createElement('style');
-    style.innerHTML = `
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        .welcome-banner.fade-out {
-            animation: fadeOut 3s forwards;
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Initialize auction view system
-    initializeAuctionView();
-});
-
-// Auction View Management
-let currentView = 'tile';
-let currentPage = 1;
-const itemsPerPage = 8;
-let allAuctionItems = [];
-let filteredAuctionItems = [];
-
-function initializeAuctionView() {
-    // Get all auction items
-    const container = document.getElementById('auctionsContainer');
-    allAuctionItems = Array.from(container.querySelectorAll('.auction-item'));
-    filteredAuctionItems = [...allAuctionItems];
-
-    // Apply card backgrounds and list thumbnails from /cars-photos
-    loadAuctionPhotos();
-
-    initializeAuctionSearch();
-    
-    // Initialize with tile view
-    switchView('tile');
-}
-
-function initializeAuctionSearch() {
-    const searchForm = document.getElementById('auctionSearchForm');
-    const searchInput = document.getElementById('auctionSearch');
-    if (!searchForm || !searchInput) return;
-
-    searchForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const query = searchInput.value.trim().toLowerCase();
-        applyAuctionSearch(query);
-    });
-}
-
-function applyAuctionSearch(query) {
-    filteredAuctionItems = allAuctionItems.filter(item => {
-        const name = item.querySelector('h4')?.textContent.toLowerCase() || '';
-        const details = item.querySelector('p')?.textContent.toLowerCase() || '';
-        const slug = (item.getAttribute('data-car-name') || '').toLowerCase();
-        return name.includes(query) || details.includes(query) || slug.includes(query);
-    });
-
-    currentPage = 1;
-    updatePagination();
-}
-
-function loadAuctionPhotos() {
-    allAuctionItems.forEach((item) => {
-        const carName = item.getAttribute('data-car-name');
-        if (!carName) return;
-
-        const imagePath = `cars-photos/${carName}.png`;
-        const photoNode = item.querySelector('.auction-photo');
-
-        // Set both tile and list image sources via CSS variable.
-        item.style.setProperty('--auction-image', `url('${imagePath}')`);
-        if (photoNode) {
-            photoNode.style.backgroundImage = `url('${imagePath}')`;
-        }
-    });
-}
-
-function switchView(viewType) {
-    const container = document.getElementById('auctionsContainer');
-    const tileBtn = document.querySelector('.tile-btn');
-    const listBtn = document.querySelector('.list-btn');
-    
-    currentView = viewType;
-    currentPage = 1;
-    
-    // Update button states
-    if (viewType === 'tile') {
-        container.classList.remove('list-view');
-        container.classList.add('tile-view');
-        tileBtn.classList.add('active');
-        listBtn.classList.remove('active');
-    } else {
-        container.classList.remove('tile-view');
-        container.classList.add('list-view');
-        listBtn.classList.add('active');
-        tileBtn.classList.remove('active');
-    }
-    
-    // Update pagination and display
-    updatePagination();
-}
-
-function updatePagination() {
-    const startIdx = (currentPage - 1) * itemsPerPage;
-    const endIdx = startIdx + itemsPerPage;
-    const visibleItems = filteredAuctionItems;
-    const totalPages = Math.max(1, Math.ceil(visibleItems.length / itemsPerPage));
-    const emptyState = document.getElementById('searchEmptyState');
-    
-    // Show/hide items based on active search and page
-    allAuctionItems.forEach((item, idx) => {
-        if (!visibleItems.includes(item)) {
-            item.style.display = 'none';
-            return;
-        }
-
-        const filteredIndex = visibleItems.indexOf(item);
-        if (filteredIndex >= startIdx && filteredIndex < endIdx) {
-            item.style.display = '';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-    
-    if (visibleItems.length === 0) {
-        document.getElementById('pageInfo').textContent = 'No results';
-        if (emptyState) emptyState.hidden = false;
-    } else {
-        document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
-        if (emptyState) emptyState.hidden = true;
-    }
-    
-    // Enable/disable pagination buttons
-    document.getElementById('prevBtn').disabled = currentPage === 1 || visibleItems.length === 0;
-    document.getElementById('nextBtn').disabled = currentPage === totalPages || visibleItems.length === 0;
-}
-
-function nextPage() {
-    const totalPages = Math.max(1, Math.ceil(filteredAuctionItems.length / itemsPerPage));
-    if (currentPage < totalPages) {
-        currentPage++;
-        updatePagination();
-    }
-}
-
-function previousPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        updatePagination();
-    }
-}
-    </script>
+    <script src="classic_auto_auction.js"></script>
 </body>
 </html>

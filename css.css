@@ -565,6 +565,7 @@ body {
     width: 100%;
     max-width: 380px;
     margin-left: auto;
+    position: relative;
 }
 
 .search-form {
@@ -602,6 +603,7 @@ body {
     font-size: 1rem;
     line-height: 1;
     transition: transform 0.2s, opacity 0.2s;
+    position: relative;
 }
 
 .search-btn:hover {
@@ -612,6 +614,99 @@ body {
 .search-btn:focus-visible {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
+}
+
+.active-filter-badge {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #ef4444;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.search-filters-panel {
+    position: absolute;
+    top: calc(100% + 0.45rem);
+    right: 0;
+    width: min(96vw, 380px);
+    background: var(--header-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 10px 22px var(--shadow);
+    padding: 0.9rem;
+    z-index: 200;
+}
+
+.search-filters-panel h4 {
+    margin: 0 0 0.6rem;
+    font-size: 0.95rem;
+}
+
+.filter-group {
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.6rem;
+    margin-top: 0.55rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem 0.75rem;
+}
+
+.filter-group p {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.filter-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.86rem;
+    color: var(--text-color);
+}
+
+.filter-group input[type="checkbox"] {
+    accent-color: var(--accent-color);
+}
+
+.filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.7rem;
+}
+
+.filter-btn {
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    padding: 0.45rem 0.75rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.filter-btn.apply {
+    background: var(--accent-color);
+    color: var(--accent-text);
+}
+
+.filter-btn.clear {
+    background: transparent;
+    color: var(--text-color);
 }
 
 .search-empty-state {
