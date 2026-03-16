@@ -7,134 +7,15 @@
     <link rel="stylesheet" href="css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body class="dark-theme">
-    <!-- Top Header -->
-    <div class="top-header">
-        <div class="logo-section">
-            <div class="logo-icon"><img src="images/logo_icon.png" alt="Classic Bid Logo"></div>
-            <div class="logo-text">
-                <h1>Druk Classic Bid Auctions</h1>
-                <p>Premium Classic Auto Marketplace</p>
-            </div>
-        </div>
-        <div class="user-section">
-            <button id="theme-toggle" class="theme-toggle-btn">🌙</button>
-            <div class="notification-icon">
-                🔔
-                <span class="notification-badge">4</span>
-            </div>
-            <div class="user-info">
-                <div class="user-avatar">JD</div>
-                <div class="user-details">
-                    <h3>John Dealer</h3>
-                    <p>Administrator</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<body class="dark-theme" data-page="dashboard">
+    <div id="header-placeholder"></div>
 
-    <!-- Additional Section Below Top Header -->
-    <div class="below-header-section">
-        <div class="below-header-inner">
-            <!-- Sub-header buttons (replaces previous key statistics) -->
-            <div class="sub-buttons">
-                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-tag" aria-hidden="true"></i></span>Offers</button>
-                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i></span>Purchased</button>
-                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span>Watch List</button>
-                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-money-check-dollar" aria-hidden="true"></i></span>Sold</button>
-            </div>
-
-            <div class="below-header-search">
-                <form id="auctionSearchForm" class="search-form" role="search" aria-label="Search current auctions">
-                    <label for="auctionSearch" class="sr-only">Search auctions</label>
-                    <input
-                        type="search"
-                        id="auctionSearch"
-                        class="auctions-search"
-                        placeholder="Search by model, make, or spec"
-                        aria-label="Search current auctions"
-                    >
-                    <button type="button" id="searchTriggerBtn" class="search-btn" aria-label="Run auction search">
-                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                        <span id="activeFilterBadge" class="active-filter-badge" hidden>0</span>
-                    </button>
-                </form>
-
-                <div id="searchFiltersPanel" class="search-filters-panel" hidden>
-                    <h4>Search Filters</h4>
-
-                    <div class="filter-group">
-                        <p>Make</p>
-                        <label><input type="checkbox" data-filter-group="make" value="ford"> Ford</label>
-                        <label><input type="checkbox" data-filter-group="make" value="chevrolet"> Chevrolet</label>
-                        <label><input type="checkbox" data-filter-group="make" value="cadillac"> Cadillac</label>
-                        <label><input type="checkbox" data-filter-group="make" value="porsche"> Porsche</label>
-                        <label><input type="checkbox" data-filter-group="make" value="jaguar"> Jaguar</label>
-                        <label><input type="checkbox" data-filter-group="make" value="mercury"> Mercury</label>
-                    </div>
-
-                    <div class="filter-group">
-                        <p>Engine</p>
-                        <label><input type="checkbox" data-filter-group="engine" value="v8"> V8</label>
-                        <label><input type="checkbox" data-filter-group="engine" value="inline-6"> Inline-6</label>
-                    </div>
-
-                    <div class="filter-group">
-                        <p>Body Style</p>
-                        <label><input type="checkbox" data-filter-group="body" value="convertible"> Convertible</label>
-                        <label><input type="checkbox" data-filter-group="body" value="coupe"> Coupe</label>
-                        <label><input type="checkbox" data-filter-group="body" value="hardtop"> Hardtop</label>
-                        <label><input type="checkbox" data-filter-group="body" value="wagon"> Wagon</label>
-                    </div>
-
-                    <div class="filter-actions">
-                        <button type="button" id="applySearchFiltersBtn" class="filter-btn apply">Apply Filters</button>
-                        <button type="button" id="clearSearchFiltersBtn" class="filter-btn clear">Clear</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="below-header-placeholder"></div>
 
     <!-- Main Container -->
     <div class="main-container">
         <!-- Left Sidebar -->
-        <div class="left-sidebar" id="leftSidebar">
-            <div class="sidebar-header">
-                <span class="sidebar-title">Navigation</span>
-                <button class="collapse-btn" onclick="toggleLeftSidebar()">
-                    <span id="leftArrow">◀</span>
-                </button>
-            </div>
-            <div class="nav-item active">
-                <span class="nav-icon">📊</span>
-                <span>Dashboard</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon">🏛️</span>
-                <span>Auction Houses</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon">🚗</span>
-                <span>My Vehicles</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon">🎯</span>
-                <span>Watchlist</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon">👥</span>
-                <span>Sellers</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon">📅</span>
-                <span>Schedule</span>
-            </div>
-            <div class="nav-item">
-                <span class="nav-icon">🌐</span>
-                <span>Network</span>
-            </div>
-        </div>
+        <div id="left-sidebar-placeholder"></div>
 
         <!-- Main Content -->
         <div class="main-content" id="mainContent">
@@ -163,7 +44,7 @@
                     </div>
                     
                     <div id="auctionsContainer" class="auctions-container tile-view">
-                    <a class="auction-item" data-car-name="1967-ford-mustang-fastback" href="car-details.html" target="_blank">
+                    <a class="auction-item" data-car-name="1967-ford-mustang-fastback" href="car-details.html?car=1967-ford-mustang-fastback" target="_blank">
                         <div class="auction-photo" aria-hidden="true"></div>
                         <div class="auction-details">
                             <h4>1967 Ford Mustang Fastback</h4>
@@ -172,68 +53,68 @@
                         <div class="auction-time">02:14:33</div>
                     </a>
 
-                    <div class="auction-item" data-car-name="1957-chevrolet-Bel-Air">
+                    <a class="auction-item" data-car-name="1957-chevrolet-Bel-Air" href="car-details.html?car=1957-chevrolet-Bel-Air" target="_blank">
                         <div class="auction-photo" aria-hidden="true"></div>
                         <div class="auction-details">
                             <h4>1957 Chevrolet Bel Air</h4>
                             <p>283 V8 • Fuel Injection • Two-Tone</p>
                         </div>
                         <div class="auction-time">01:42:18</div>
-                    </div>
+                    </a>
 
-                    <div class="auction-item" data-car-name="1955-chevrolet-nomad">
+                    <a class="auction-item" data-car-name="1955-chevrolet-nomad" href="car-details.html?car=1955-chevrolet-nomad" target="_blank">
                         <div class="auction-photo" aria-hidden="true"></div>
                         <div class="auction-details">
                             <h4>1955 Chevrolet Nomad</h4>
                             <p>265 V8 • Wagon • Frame-Off Build</p>
                         </div>
                         <div class="auction-time">03:08:45</div>
-                    </div>
+                    </a>
 
-                    <div class="auction-item" data-car-name="1958-chevrolet--impala">
+                    <a class="auction-item" data-car-name="1958-chevrolet--impala" href="car-details.html?car=1958-chevrolet--impala" target="_blank">
                         <div class="auction-photo" aria-hidden="true"></div>
                         <div class="auction-details">
                             <h4>1958 Chevrolet Impala</h4>
                             <p>348 V8 • Tri-Power • Hardtop</p>
                         </div>
                         <div class="auction-time">00:58:22</div>
-                    </div>
+                    </a>
 
-                    <div class="auction-item" data-car-name="1959-cadillac-series-62">
+                    <a class="auction-item" data-car-name="1959-cadillac-series-62" href="car-details.html?car=1959-cadillac-series-62" target="_blank">
                         <div class="auction-photo" aria-hidden="true"></div>
                         <div class="auction-details">
                             <h4>1959 Cadillac Series 62</h4>
                             <p>390 V8 • Tailfins • Convertible</p>
                         </div>
                         <div class="auction-time">04:33:12</div>
-                    </div>
+                    </a>
 
-                    <div class="auction-item" data-car-name="1960-prosche-356b-cabriolet">
+                    <a class="auction-item" data-car-name="1960-prosche-356b-cabriolet" href="car-details.html?car=1960-prosche-356b-cabriolet" target="_blank">
                         <div class="auction-photo" aria-hidden="true"></div>
                         <div class="auction-details">
                             <h4>1960 Prosche 356B Cabriolet</h4>
                             <p>1600 Super • 4-Speed • Open Top</p>
                         </div>
                         <div class="auction-time">05:22:45</div>
-                    </div>
+                    </a>
 
-                    <div class="auction-item" data-car-name="1969-jaguar-e-type">
+                    <a class="auction-item" data-car-name="1969-jaguar-e-type" href="car-details.html?car=1969-jaguar-e-type" target="_blank">
                         <div class="auction-photo" aria-hidden="true"></div>
                         <div class="auction-details">
                             <h4>1969 Jaguar E-Type</h4>
                             <p>4.2L Inline-6 • Series 2 • Coupe</p>
                         </div>
                         <div class="auction-time">02:55:18</div>
-                    </div>
+                    </a>
 
-                    <div class="auction-item" data-car-name="1969-mercury-cougar">
+                    <a class="auction-item" data-car-name="1969-mercury-cougar" href="car-details.html?car=1969-mercury-cougar" target="_blank">
                         <div class="auction-photo" aria-hidden="true"></div>
                         <div class="auction-details">
                             <h4>1969 Mercury Cougar</h4>
                             <p>351 Windsor • XR-7 Trim • Survivor</p>
                         </div>
                         <div class="auction-time">01:33:27</div>
-                    </div>
+                    </a>
                     </div>
 
                     <div id="searchEmptyState" class="search-empty-state" hidden>
@@ -378,43 +259,9 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Druk ClassicBid Auctions</h3>
-                <p>Your premier destination for classic car auctions and marketplace.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Auction Houses</a></li>
-                    <li><a href="#">My Vehicles</a></li>
-                    <li><a href="#">Watchlist</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <p>Email: info@drukclassicbid.com</p>
-                <p>Phone: (555) 123-4567</p>
-                <p>Address: 123 Classic Car Lane, Auto City, AC 12345</p>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="#" class="social-icon">📘 Facebook</a>
-                    <a href="#" class="social-icon">🐦 Twitter</a>
-                    <a href="#" class="social-icon">📷 Instagram</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Druk ClassicBid Auctions. All rights reserved.</p>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
+    <script src="components.js"></script>
     <script src="classic_auto_auction.js"></script>
 </body>
 </html>

@@ -7,138 +7,28 @@
     <link rel="stylesheet" href="css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body class="dark-theme car-details-page">
-    <!-- Top Header -->
-    <div class="top-header">
-        <div class="logo-section">
-            <div class="logo-icon"><img src="images/logo_icon.png" alt="Classic Bid Logo"></div>
-            <div class="logo-text">
-                <h1>Druk Classic Bid Auctions</h1>
-                <p>Premium Classic Auto Marketplace</p>
-            </div>
-        </div>
-        <div class="user-section">
-            <button id="theme-toggle" class="theme-toggle-btn">🌙</button>
-            <div class="notification-icon">
-                🔔
-                <span class="notification-badge">4</span>
-            </div>
-            <div class="user-info">
-                <div class="user-avatar">JD</div>
-                <div class="user-details">
-                    <h3>John Dealer</h3>
-                    <p>Administrator</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<body class="dark-theme car-details-page" data-page="car-details">
+    <div id="header-placeholder"></div>
 
-    <!-- Additional Section Below Top Header -->
-    <div class="below-header-section">
-        <div class="below-header-inner">
-            <div class="sub-buttons">
-                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-tag" aria-hidden="true"></i></span>Offers</button>
-                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i></span>Purchased</button>
-                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span>Watch List</button>
-                <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-money-check-dollar" aria-hidden="true"></i></span>Sold</button>
-            </div>
-
-            <div class="below-header-search">
-                <form id="carDetailsSearchForm" class="search-form" role="search" aria-label="Search vehicle details">
-                    <label for="carDetailsSearch" class="sr-only">Search vehicle details</label>
-                    <input
-                        type="search"
-                        id="carDetailsSearch"
-                        class="auctions-search"
-                        placeholder="Search details, specs, or notes"
-                        aria-label="Search vehicle details"
-                    >
-                    <button type="button" id="carDetailsSearchTriggerBtn" class="search-btn" aria-label="Run search">
-                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                        <span id="carDetailsFilterBadge" class="active-filter-badge" hidden>0</span>
-                    </button>
-                </form>
-
-                <div id="carDetailsFiltersPanel" class="search-filters-panel" hidden>
-                    <h4>Search Filters</h4>
-
-                    <div class="filter-group">
-                        <p>Make</p>
-                        <label><input type="checkbox" data-filter-group="make" value="ford"> Ford</label>
-                        <label><input type="checkbox" data-filter-group="make" value="chevrolet"> Chevrolet</label>
-                        <label><input type="checkbox" data-filter-group="make" value="cadillac"> Cadillac</label>
-                        <label><input type="checkbox" data-filter-group="make" value="porsche"> Porsche</label>
-                        <label><input type="checkbox" data-filter-group="make" value="jaguar"> Jaguar</label>
-                        <label><input type="checkbox" data-filter-group="make" value="mercury"> Mercury</label>
-                    </div>
-
-                    <div class="filter-group">
-                        <p>Engine</p>
-                        <label><input type="checkbox" data-filter-group="engine" value="v8"> V8</label>
-                        <label><input type="checkbox" data-filter-group="engine" value="inline-6"> Inline-6</label>
-                    </div>
-
-                    <div class="filter-group">
-                        <p>Body Style</p>
-                        <label><input type="checkbox" data-filter-group="body" value="convertible"> Convertible</label>
-                        <label><input type="checkbox" data-filter-group="body" value="coupe"> Coupe</label>
-                        <label><input type="checkbox" data-filter-group="body" value="hardtop"> Hardtop</label>
-                        <label><input type="checkbox" data-filter-group="body" value="wagon"> Wagon</label>
-                    </div>
-
-                    <div class="filter-actions">
-                        <button type="button" id="carDetailsApplySearchFiltersBtn" class="filter-btn apply">Apply Filters</button>
-                        <button type="button" id="carDetailsClearSearchFiltersBtn" class="filter-btn clear">Clear</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="below-header-placeholder"></div>
 
     <!-- Main Content Area -->
     <main class="main-container">
         <!-- Left Sidebar -->
-        <aside class="left-sidebar">
-            <div class="sidebar-header">
-                <h3 class="sidebar-title">Navigation</h3>
-                <button class="collapse-btn" onclick="toggleLeftSidebar()"><i class="fas fa-angle-left"></i></button>
-            </div>
-            <ul class="nav-list">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Current Auctions</a></li>
-                <li><a href="#">Past Auctions</a></li>
-                <li><a href="#">Settings</a></li>
-            </ul>
-        </aside>
+        <div id="left-sidebar-placeholder"></div>
 
         <!-- Main Content -->
         <div class="main-content">
-            <section class="car-detail">
-                <h2>Vehicle Details</h2>
-                <div class="car-info">
-                    <img src="cars-photos/1967-ford-mustang-fastback.png" alt="1967 Ford Mustang Fastback">
-                    <div class="car-description">
-                        <h3>1967 Ford Mustang Fastback</h3>
-                        <p>Make: Ford</p>
-                        <p>Model: Mustang GT</p>
-                        <p>Year: 1967</p>
-                        <p>Mileage: 50,000 miles</p>
-                        <p>Condition: Excellent</p>
-                    </div>
-                </div>
-                <div class="bid-section">
-                    <h3>Bid Now</h3>
-                    <form action="#" method="post">
-                        <label for="bid-amount">Bid Amount:</label>
-                        <input type="number" id="bid-amount" name="bid-amount" required>
-                        <button type="submit">Place Bid</button>
-                    </form>
-                </div>
+            <div class="car-detail-breadcrumb">
+                <a href="classic_auto_auction.html" class="back-link"><i class="fas fa-chevron-left"></i> Back to Auctions</a>
+            </div>
+            <section class="car-detail" id="carDetailSection">
+                <p class="car-detail-loading">Loading vehicle details&hellip;</p>
             </section>
         </div>
 
         <!-- Right Sidebar -->
-        <aside class="right-sidebar">
+        <aside class="right-sidebar" id="rightSidebar">
             <div class="sidebar-header">
                 <button class="collapse-btn" onclick="toggleRightSidebar()"><i class="fas fa-angle-right"></i></button>
                 <h3 class="sidebar-title">Quick Actions</h3>
@@ -160,114 +50,150 @@
         </aside>
     </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Druk ClassicBid Auctions</h3>
-                <p>Your premier destination for classic car auctions and marketplace.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Auction Houses</a></li>
-                    <li><a href="#">My Vehicles</a></li>
-                    <li><a href="#">Watchlist</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <p>Email: info@drukclassicbid.com</p>
-                <p>Phone: (555) 123-4567</p>
-                <p>Address: 123 Classic Car Lane, Auto City, AC 12345</p>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="#" class="social-icon">📘 Facebook</a>
-                    <a href="#" class="social-icon">🐦 Twitter</a>
-                    <a href="#" class="social-icon">📷 Instagram</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Druk ClassicBid Auctions. All rights reserved.</p>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
+    <script src="components.js"></script>
     <script>
-        (function () {
-            function syncStickyOffset() {
-                var header = document.querySelector('.top-header');
-                if (!header) {
+        // Re-init search panel using the shared partial IDs once components are ready
+        document.addEventListener('components:ready', function () {
+            initBackToAuctions();
+
+            var triggerBtn = document.getElementById('searchTriggerBtn');
+            var filtersPanel = document.getElementById('searchFiltersPanel');
+            var filterBadge = document.getElementById('activeFilterBadge');
+            var applyBtn = document.getElementById('applySearchFiltersBtn');
+            var clearBtn = document.getElementById('clearSearchFiltersBtn');
+            var searchWrap = document.querySelector('.below-header-search');
+
+            if (triggerBtn && filtersPanel) {
+                triggerBtn.addEventListener('click', function () {
+                    filtersPanel.hidden = !filtersPanel.hidden;
+                });
+
+                if (applyBtn) {
+                    applyBtn.addEventListener('click', function () {
+                        var checked = filtersPanel.querySelectorAll('input[type="checkbox"]:checked');
+                        if (filterBadge) {
+                            filterBadge.textContent = String(checked.length);
+                            filterBadge.hidden = checked.length === 0;
+                        }
+                        filtersPanel.hidden = true;
+                    });
+                }
+
+                if (clearBtn) {
+                    clearBtn.addEventListener('click', function () {
+                        filtersPanel.querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
+                            cb.checked = false;
+                        });
+                        if (filterBadge) {
+                            filterBadge.textContent = '0';
+                            filterBadge.hidden = true;
+                        }
+                        filtersPanel.hidden = true;
+                    });
+                }
+
+                if (searchWrap) {
+                    document.addEventListener('click', function (event) {
+                        if (!searchWrap.contains(event.target)) {
+                            filtersPanel.hidden = true;
+                        }
+                    });
+                }
+            }
+
+            // Load car details
+            loadCarDetails();
+        });
+
+        function initBackToAuctions() {
+            var backLink = document.querySelector('.back-link');
+            if (!backLink) return;
+
+            backLink.addEventListener('click', function (event) {
+                var openerWindow = window.opener;
+
+                if (!openerWindow || openerWindow.closed) {
                     return;
                 }
 
-                document.documentElement.style.setProperty('--top-header-height', header.offsetHeight + 'px');
-            }
+                event.preventDefault();
 
-            window.addEventListener('load', syncStickyOffset);
-            window.addEventListener('resize', syncStickyOffset);
-        })();
+                try {
+                    openerWindow.focus();
+                    window.close();
 
-        function toggleLeftSidebar() {
-            var sidebar = document.querySelector('.left-sidebar');
-            if (sidebar) {
-                sidebar.classList.toggle('collapsed');
-            }
-        }
-
-        function toggleRightSidebar() {
-            var sidebar = document.querySelector('.right-sidebar');
-            if (sidebar) {
-                sidebar.classList.toggle('collapsed');
-            }
-        }
-
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        if (themeToggle) {
-            themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
-            themeToggle.addEventListener('click', function () {
-                document.body.classList.toggle('dark-theme');
-                themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+                    window.setTimeout(function () {
+                        if (!window.closed) {
+                            window.location.href = backLink.href;
+                        }
+                    }, 150);
+                } catch (err) {
+                    window.location.href = backLink.href;
+                }
             });
         }
 
-        // Search filter functionality
-        const carDetailsSearchTriggerBtn = document.getElementById('carDetailsSearchTriggerBtn');
-        const carDetailsFiltersPanel = document.getElementById('carDetailsFiltersPanel');
-        const carDetailsFilterBadge = document.getElementById('carDetailsFilterBadge');
-        const carDetailsApplySearchFiltersBtn = document.getElementById('carDetailsApplySearchFiltersBtn');
-        const carDetailsClearSearchFiltersBtn = document.getElementById('carDetailsClearSearchFiltersBtn');
-
-        if (carDetailsSearchTriggerBtn) {
-            carDetailsSearchTriggerBtn.addEventListener('click', function () {
-                carDetailsFiltersPanel.hidden = !carDetailsFiltersPanel.hidden;
-            });
-        }
-
-        if (carDetailsApplySearchFiltersBtn) {
-            carDetailsApplySearchFiltersBtn.addEventListener('click', function () {
-                var checkboxes = carDetailsFiltersPanel.querySelectorAll('input[type="checkbox"]:checked');
-                carDetailsFilterBadge.textContent = checkboxes.length;
-                carDetailsFilterBadge.hidden = checkboxes.length === 0;
-                carDetailsFiltersPanel.hidden = true;
-            });
-        }
-
-        if (carDetailsClearSearchFiltersBtn) {
-            carDetailsClearSearchFiltersBtn.addEventListener('click', function () {
-                var checkboxes = carDetailsFiltersPanel.querySelectorAll('input[type="checkbox"]');
-                checkboxes.forEach(function (checkbox) {
-                    checkbox.checked = false;
+        function loadCarDetails() {
+            var params = new URLSearchParams(window.location.search);
+            var carId = params.get('car');
+            if (!carId) {
+                showCarError('No vehicle selected. <a href="classic_auto_auction.html">Browse auctions &rarr;</a>');
+                return;
+            }
+            fetch('data/cars.json')
+                .then(function (res) {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    return res.json();
+                })
+                .then(function (data) {
+                    var car = data.cars.find(function (c) { return c.id === carId; });
+                    if (!car) {
+                        showCarError('Vehicle not found. <a href="classic_auto_auction.html">Browse auctions &rarr;</a>');
+                        return;
+                    }
+                    renderCarDetail(car);
+                    document.title = car.year + ' ' + car.make + ' ' + car.model + ' \u2014 Druk Classic Bid';
+                })
+                .catch(function () {
+                    showCarError('Could not load vehicle data. Please try again.');
                 });
-                carDetailsFilterBadge.textContent = '0';
-                carDetailsFilterBadge.hidden = true;
-                carDetailsFiltersPanel.hidden = true;
-            });
+        }
+
+        function showCarError(msg) {
+            var section = document.getElementById('carDetailSection');
+            if (section) section.innerHTML = '<p class="car-detail-error">' + msg + '</p>';
+        }
+
+        function renderCarDetail(car) {
+            var section = document.getElementById('carDetailSection');
+            if (!section) return;
+            var minBid = car.currentBid + 100;
+            section.innerHTML =
+                '<h2>' + car.year + ' ' + car.make + ' ' + car.model + '</h2>' +
+                '<div class="car-info">' +
+                    '<img src="' + car.photo + '" alt="' + car.year + ' ' + car.make + ' ' + car.model + '">' +
+                    '<div class="car-description">' +
+                        '<h3>' + car.year + ' ' + car.make + ' ' + car.model + '</h3>' +
+                        '<p><strong>Engine:</strong> ' + car.engine + '</p>' +
+                        '<p><strong>Transmission:</strong> ' + car.transmission + '</p>' +
+                        '<p><strong>Body Style:</strong> ' + car.bodyStyle + '</p>' +
+                        '<p><strong>Mileage:</strong> ' + car.mileage + ' miles</p>' +
+                        '<p><strong>Condition:</strong> ' + car.condition + '</p>' +
+                        '<p class="car-description-text">' + car.description + '</p>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="bid-section">' +
+                    '<h3>Bid Now</h3>' +
+                    '<p class="current-bid">Current Bid: $' + car.currentBid.toLocaleString() + '</p>' +
+                    '<p class="auction-time-remaining"><i class="fas fa-clock"></i> Time Remaining: ' + car.timeRemaining + '</p>' +
+                    '<form action="#" method="post">' +
+                        '<label for="bid-amount">Your Bid ($):</label>' +
+                        '<input type="number" id="bid-amount" name="bid-amount" min="' + minBid + '" step="100" required>' +
+                        '<button type="submit">Place Bid</button>' +
+                    '</form>' +
+                '</div>';
         }
     </script>
 </body>

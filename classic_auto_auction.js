@@ -1,13 +1,6 @@
 let lastScrollTop = 0;
 const mainContent = document.getElementById('mainContent');
 const stickyHeader = document.getElementById('stickyHeader');
-const topHeader = document.querySelector('.top-header');
-
-function updateStickyOffsets() {
-    if (!topHeader) return;
-    const headerHeight = Math.ceil(topHeader.getBoundingClientRect().height);
-    document.documentElement.style.setProperty('--top-header-height', `${headerHeight}px`);
-}
 
 // Scroll detection for hiding/showing header
 mainContent.addEventListener('scroll', function() {
@@ -26,32 +19,6 @@ mainContent.addEventListener('scroll', function() {
 
 // Initialize as visible
 stickyHeader.classList.add('visible');
-updateStickyOffsets();
-window.addEventListener('resize', updateStickyOffsets);
-
-// Theme toggle
-const themeToggle = document.getElementById('theme-toggle');
-themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
-themeToggle.addEventListener('click', function() {
-    document.body.classList.toggle('dark-theme');
-    themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
-});
-
-// Toggle left sidebar
-function toggleLeftSidebar() {
-    const sidebar = document.getElementById('leftSidebar');
-    const arrow = document.getElementById('leftArrow');
-    sidebar.classList.toggle('collapsed');
-    arrow.textContent = sidebar.classList.contains('collapsed') ? '▶' : '◀';
-}
-
-// Toggle right sidebar
-function toggleRightSidebar() {
-    const sidebar = document.getElementById('rightSidebar');
-    const arrow = document.getElementById('rightArrow');
-    sidebar.classList.toggle('collapsed');
-    arrow.textContent = sidebar.classList.contains('collapsed') ? '◀' : '▶';
-}
 
 // Update countdown timers
 function updateTimers() {
@@ -109,8 +76,7 @@ document.querySelectorAll('.quick-action').forEach(action => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    updateStickyOffsets();
+document.addEventListener('components:ready', function() {
     // Find the banner and the main content container (fallbacks included)
     setTimeout(function() {
         var banner = document.querySelector('.welcome-banner');

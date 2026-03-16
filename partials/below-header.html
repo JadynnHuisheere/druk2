@@ -1,0 +1,60 @@
+<div class="below-header-section">
+    <div class="below-header-inner">
+        <div class="sub-buttons">
+            <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-tag" aria-hidden="true"></i></span>Offers</button>
+            <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i></span>Purchased</button>
+            <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></span>Watch List</button>
+            <button class="thin-btn"><span class="btn-icon"><i class="fa-solid fa-money-check-dollar" aria-hidden="true"></i></span>Sold</button>
+        </div>
+
+        <div class="below-header-search">
+            <form id="auctionSearchForm" class="search-form" role="search" aria-label="Search auctions">
+                <label for="auctionSearch" class="sr-only">Search auctions</label>
+                <input
+                    type="search"
+                    id="auctionSearch"
+                    class="auctions-search"
+                    placeholder="Search by model, make, or spec"
+                    aria-label="Search auctions"
+                >
+                <button type="button" id="searchTriggerBtn" class="search-btn" aria-label="Run search">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <span id="activeFilterBadge" class="active-filter-badge" hidden>0</span>
+                </button>
+            </form>
+
+            <div id="searchFiltersPanel" class="search-filters-panel" hidden>
+                <h4>Search Filters</h4>
+
+                <div class="filter-group">
+                    <p>Make</p>
+                    <label><input type="checkbox" data-filter-group="make" value="ford"> Ford</label>
+                    <label><input type="checkbox" data-filter-group="make" value="chevrolet"> Chevrolet</label>
+                    <label><input type="checkbox" data-filter-group="make" value="cadillac"> Cadillac</label>
+                    <label><input type="checkbox" data-filter-group="make" value="porsche"> Porsche</label>
+                    <label><input type="checkbox" data-filter-group="make" value="jaguar"> Jaguar</label>
+                    <label><input type="checkbox" data-filter-group="make" value="mercury"> Mercury</label>
+                </div>
+
+                <div class="filter-group">
+                    <p>Engine</p>
+                    <label><input type="checkbox" data-filter-group="engine" value="v8"> V8</label>
+                    <label><input type="checkbox" data-filter-group="engine" value="inline-6"> Inline-6</label>
+                </div>
+
+                <div class="filter-group">
+                    <p>Body Style</p>
+                    <label><input type="checkbox" data-filter-group="body" value="convertible"> Convertible</label>
+                    <label><input type="checkbox" data-filter-group="body" value="coupe"> Coupe</label>
+                    <label><input type="checkbox" data-filter-group="body" value="hardtop"> Hardtop</label>
+                    <label><input type="checkbox" data-filter-group="body" value="wagon"> Wagon</label>
+                </div>
+
+                <div class="filter-actions">
+                    <button type="button" id="applySearchFiltersBtn" class="filter-btn apply">Apply Filters</button>
+                    <button type="button" id="clearSearchFiltersBtn" class="filter-btn clear">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
