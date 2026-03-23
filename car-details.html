@@ -57,6 +57,7 @@
         // Re-init search panel using the shared partial IDs once components are ready
         document.addEventListener('components:ready', function () {
             initBackToAuctions();
+            initCarPhotoLightbox();
 
             var searchForm = document.getElementById('auctionSearchForm');
             var searchInput = document.getElementById('auctionSearch');
@@ -184,6 +185,92 @@
             // Load car details
             loadCarDetails();
         });
+
+        function initCarPhotoLightbox() {
+            var currentLightboxIndex = 0;
+            var lightboxSrcs = [];
+
+            ensureCarPhotoLightbox();
+
+            function navigate(direction) {
+                if (!lightboxSrcs.length) return;
+                currentLightboxIndex = (currentLightboxIndex + direction + lightboxSrcs.length) % lightboxSrcs.length;
+                openCarPhotoLightbox(lightboxSrcs[currentLightboxIndex].src, lightboxSrcs[currentLightboxIndex].alt);
+            }
+
+            document.addEventListener('click', function (event) {
+                var target = event.target;
+                if (!target) return;
+
+                if (target.matches('.car-photo-grid img')) {
+                    var allImgs = Array.prototype.slice.call(document.querySelectorAll('.car-photo-grid img'));
+                    lightboxSrcs = allImgs.map(function (img) { return { src: img.src, alt: img.alt || 'Vehicle photo' }; });
+                    currentLightboxIndex = allImgs.indexOf(target);
+                    openCarPhotoLightbox(lightboxSrcs[currentLightboxIndex].src, lightboxSrcs[currentLightboxIndex].alt);
+                    return;
+                }
+
+                if (target.matches('.car-photo-lightbox') || target.matches('.car-photo-lightbox-close')) {
+                    closeCarPhotoLightbox();
+                    return;
+                }
+
+                if (target.matches('.car-photo-lightbox-prev')) { navigate(-1); return; }
+                if (target.matches('.car-photo-lightbox-next')) { navigate(1);  return; }
+            });
+
+            document.addEventListener('keydown', function (event) {
+                var lb = document.getElementById('carPhotoLightbox');
+                if (!lb || !lb.classList.contains('is-open')) return;
+                if (event.key === 'Escape')     { closeCarPhotoLightbox(); return; }
+                if (event.key === 'ArrowLeft')  { navigate(-1); return; }
+                if (event.key === 'ArrowRight') { navigate(1);  return; }
+            });
+        }
+
+        function ensureCarPhotoLightbox() {
+            if (document.getElementById('carPhotoLightbox')) return;
+
+            var overlay = document.createElement('div');
+            overlay.id = 'carPhotoLightbox';
+            overlay.className = 'car-photo-lightbox';
+            overlay.setAttribute('aria-hidden', 'true');
+            overlay.innerHTML =
+                '<button type="button" class="car-photo-lightbox-close" aria-label="Close photo viewer">&times;</button>' +
+                '<button type="button" class="car-photo-lightbox-prev" aria-label="Previous photo">&#8249;</button>' +
+                '<div class="car-photo-lightbox-content">' +
+                    '<img id="carPhotoLightboxImage" src="" alt="Expanded vehicle photo">' +
+                '</div>' +
+                '<button type="button" class="car-photo-lightbox-next" aria-label="Next photo">&#8250;</button>';
+
+            document.body.appendChild(overlay);
+        }
+
+        function openCarPhotoLightbox(src, altText) {
+            var lightbox = document.getElementById('carPhotoLightbox');
+            var lightboxImage = document.getElementById('carPhotoLightboxImage');
+            if (!lightbox || !lightboxImage) return;
+
+            lightboxImage.src = src;
+            lightboxImage.alt = altText || 'Expanded vehicle photo';
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('lightbox-open');
+        }
+
+        function closeCarPhotoLightbox() {
+            var lightbox = document.getElementById('carPhotoLightbox');
+            var lightboxImage = document.getElementById('carPhotoLightboxImage');
+            if (!lightbox || !lightbox.classList.contains('is-open')) return;
+
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('lightbox-open');
+
+            if (lightboxImage) {
+                lightboxImage.src = '';
+            }
+        }
 
         function initBackToAuctions() {
             var backLink = document.querySelector('.back-link');
