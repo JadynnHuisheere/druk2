@@ -225,19 +225,29 @@ body.lightbox-open {
     margin-bottom: 1rem;
 }
 
-.car-details-page .back-link {
+.car-details-page .back-button {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    color: var(--accent-color);
-    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    background: var(--accent-color);
+    color: var(--accent-text);
+    border: 1px solid var(--accent-color);
+    border-radius: 6px;
     font-size: 0.9rem;
     font-weight: 500;
-    transition: opacity 0.2s;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
 }
 
-.car-details-page .back-link:hover {
-    opacity: 0.75;
+.car-details-page .back-button:hover {
+    opacity: 0.85;
+    transform: translateX(-2px);
+}
+
+.car-details-page .back-button:active {
+    transform: translateX(-1px);
 }
 
 .car-details-page .car-detail-loading {

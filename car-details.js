@@ -217,30 +217,36 @@ function closeCarPhotoLightbox() {
 }
 
 function initBackToAuctions() {
-    var backLink = document.querySelector('.back-link');
-    if (!backLink) return;
+    var backButton = document.querySelector('.back-button');
+    if (!backButton) return;
 
-    backLink.addEventListener('click', function (event) {
+    backButton.addEventListener('click', function () {
+        var fallbackUrl = 'car-dashboard.html';
         var openerWindow = window.opener;
 
-        if (!openerWindow || openerWindow.closed) {
+        if (openerWindow && !openerWindow.closed) {
+            try {
+                openerWindow.focus();
+                window.close();
+
+                window.setTimeout(function () {
+                    if (!window.closed) {
+                        window.location.href = fallbackUrl;
+                    }
+                }, 150);
+                return;
+            } catch (err) {
+                window.location.href = fallbackUrl;
+                return;
+            }
+        }
+
+        if (document.referrer && document.referrer.indexOf('car-dashboard.html') !== -1) {
+            window.history.back();
             return;
         }
 
-        event.preventDefault();
-
-        try {
-            openerWindow.focus();
-            window.close();
-
-            window.setTimeout(function () {
-                if (!window.closed) {
-                    window.location.href = backLink.href;
-                }
-            }, 150);
-        } catch (err) {
-            window.location.href = backLink.href;
-        }
+        window.location.href = fallbackUrl;
     });
 }
 

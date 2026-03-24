@@ -14,6 +14,7 @@
       "photo": "cars-photos/1967-ford-mustang-fastback.png",
       "startingBid": 42000,
       "currentBid": 47500,
+      "status": "Sale",
       "timeRemaining": "02:14:33"
     },
     {
@@ -30,6 +31,7 @@
       "photo": "cars-photos/1957-chevrolet-Bel-Air.png",
       "startingBid": 55000,
       "currentBid": 58000,
+      "status": "Sold",
       "timeRemaining": "01:42:18"
     },
     {
@@ -46,6 +48,7 @@
       "photo": "cars-photos/1955-chevrolet-nomad.png",
       "startingBid": 68000,
       "currentBid": 72500,
+      "status": "Appending",
       "timeRemaining": "03:08:45"
     },
     {
@@ -62,6 +65,7 @@
       "photo": "cars-photos/1958-chevrolet--impala.png",
       "startingBid": 38000,
       "currentBid": 41000,
+      "status": "Sale",
       "timeRemaining": "00:58:22"
     },
     {
@@ -78,6 +82,7 @@
       "photo": "cars-photos/1959-cadillac-series-62.png",
       "startingBid": 82000,
       "currentBid": 87000,
+      "status": "Sold",
       "timeRemaining": "04:33:12"
     },
     {
@@ -94,6 +99,7 @@
       "photo": "cars-photos/1960-prosche-356b-cabriolet.png",
       "startingBid": 95000,
       "currentBid": 102000,
+      "status": "Appending",
       "timeRemaining": "05:22:45"
     },
     {
@@ -110,6 +116,7 @@
       "photo": "cars-photos/1969-jaguar-e-type.png",
       "startingBid": 78000,
       "currentBid": 84000,
+      "status": "Sale",
       "timeRemaining": "02:55:18"
     },
     {
@@ -126,6 +133,7 @@
       "photo": "cars-photos/1969-mercury-cougar.png",
       "startingBid": 28000,
       "currentBid": 31500,
+      "status": "Sold",
       "timeRemaining": "01:33:27"
     },
     {
@@ -142,6 +150,7 @@
       "photo": "cars-photos/1934-ford-model-40-coupe.png",
       "startingBid": 35000,
       "currentBid": 35000,
+      "status": "Sale",
       "timeRemaining": "06:00:00"
     }
   ]

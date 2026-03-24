@@ -20,37 +20,6 @@ mainContent.addEventListener('scroll', function() {
 // Initialize as visible
 stickyHeader.classList.add('visible');
 
-// Update countdown timers
-function updateTimers() {
-    const timers = document.querySelectorAll('.auction-time');
-    timers.forEach(timer => {
-        if (timer.textContent.includes(':')) {
-            let time = timer.textContent.split(':');
-            let hours = parseInt(time[0]);
-            let minutes = parseInt(time[1]);
-            let seconds = parseInt(time[2]);
-
-            seconds--;
-            if (seconds < 0) {
-                seconds = 59;
-                minutes--;
-            }
-            if (minutes < 0) {
-                minutes = 59;
-                hours--;
-            }
-            if (hours < 0) hours = 0;
-
-            timer.textContent =
-                String(hours).padStart(2, '0') + ':' +
-                String(minutes).padStart(2, '0') + ':' +
-                String(seconds).padStart(2, '0');
-        }
-    });
-}
-
-setInterval(updateTimers, 1000);
-
 // Add click handlers
 document.querySelectorAll('.auction-item').forEach(item => {
     item.addEventListener('click', function(e) {
@@ -128,11 +97,59 @@ let searchFilterState = {
     body: new Set()
 };
 
+function normalizeStatus(rawStatus) {
+    const normalized = String(rawStatus || 'Sale').trim().toLowerCase();
+    if (normalized === 'sold') return { label: 'Sold', className: 'status-sold' };
+    if (normalized === 'appending') return { label: 'Appending', className: 'status-appending' };
+    return { label: 'Sale', className: 'status-sale' };
+}
+
+function applyMarketplaceData(cars) {
+    const carsById = new Map(cars.map(car => [car.id, car]));
+
+    allAuctionItems.forEach(item => {
+        const carId = item.getAttribute('data-car-name');
+        const car = carsById.get(carId);
+        if (!car) return;
+
+        const priceEl = item.querySelector('.sale-price');
+        const labelEl = item.querySelector('.sale-label');
+
+        if (priceEl && Number.isFinite(car.currentBid)) {
+            priceEl.textContent = `$${car.currentBid.toLocaleString('en-US')}`;
+        }
+
+        if (labelEl) {
+            const status = normalizeStatus(car.status);
+            labelEl.textContent = status.label;
+            labelEl.classList.remove('status-sale', 'status-sold', 'status-appending');
+            labelEl.classList.add(status.className);
+        }
+    });
+}
+
+function loadMarketplaceData() {
+    fetch('data/cars.json')
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            if (!data || !Array.isArray(data.cars)) return;
+            applyMarketplaceData(data.cars);
+        })
+        .catch(() => {
+            // Keep existing placeholders if data cannot be loaded.
+        });
+}
+
 function initializeAuctionView() {
     // Get all auction items
     const container = document.getElementById('auctionsContainer');
     allAuctionItems = Array.from(container.querySelectorAll('.auction-item'));
     filteredAuctionItems = [...allAuctionItems];
+
+    loadMarketplaceData();
 
     // Apply card backgrounds and list thumbnails from /cars-photos
     loadAuctionPhotos();
