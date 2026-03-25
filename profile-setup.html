@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Profile - Druk's Website</title>
+    <link rel="stylesheet" href="css.css">
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: var(--bg-color); color: var(--text-color); }
+        .setup-container { background: var(--card-bg); padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px var(--shadow); width: 340px; border: 1px solid var(--border-color); }
+        .setup-container h2 { text-align: center; margin-bottom: 1.2rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 500; color: var(--text-color); }
+        .form-group input { width: 100%; padding: 0.7rem; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-color); color: var(--text-color); }
+        .btn { width: 100%; padding: 0.75rem; background: var(--accent-color); color: var(--accent-text); border: none; border-radius: 4px; cursor: pointer; font-weight: 600; }
+        .btn:hover { background: var(--gradient-end); }
+        .error { color: #ff4444; font-size: 0.9rem; margin-top: 0.7rem; text-align: center; }
+    </style>
+</head>
+<body class="dark-theme">
+    <div class="setup-container">
+        <h2>Complete Your Profile</h2>
+        <div class="form-group">
+            <label for="realName">Full Name</label>
+            <input type="text" id="realName" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" required>
+        </div>
+        <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input type="password" id="newPassword" required minlength="6">
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" required minlength="6">
+        </div>
+        <button id="saveProfile" class="btn">Save & Continue</button>
+        <div id="setupError" class="error" style="display:none;"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+        });
+
+        document.getElementById('saveProfile').addEventListener('click', async function() {
+            const errorEl = document.getElementById('setupError');
+            errorEl.style.display = 'none';
+
+            const realName = document.getElementById('realName').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (!realName || !username) {
+                errorEl.textContent = 'Name and username are required.';
+                errorEl.style.display = 'block';
+                return;
+            }
+            if (newPassword.length < 6 || newPassword !== confirmPassword) {
+                errorEl.textContent = 'Passwords must match and be 6+ chars.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            const user = firebase.auth().currentUser;
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                await user.updateProfile({ displayName: realName });
+                await user.updatePassword(newPassword);
+                // store username locally for display or future use
+                const users = JSON.parse(localStorage.getItem('customProfiles') || '[]');
+                users.push({ uid: user.uid, authId: user.displayName || '', username, fullName: realName });
+                localStorage.setItem('customProfiles', JSON.stringify(users));
+                window.location.href = 'car-dashboard.html';
+            } catch (error) {
+                errorEl.textContent = error.message;
+                errorEl.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

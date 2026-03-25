@@ -90,16 +90,33 @@
         <h2>Login</h2>
         <form id="loginForm">
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" required>
+                <label for="accessId">AuctionACCESS ID</label>
+                <input type="text" id="accessId" placeholder="ex. 101234567" required pattern="\d{8,12}">
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required>
+                <label for="idLast4">Last 4 Digits of SSN/Gov't ID</label>
+                <input type="text" id="idLast4" placeholder="1234" required pattern="\d{4}" maxlength="4">
             </div>
             <button type="submit" class="btn" id="loginBtn">Login</button>
         </form>
         <div id="errorMessage" class="error" style="display: none;"></div>
+        <div class="switcher" style="margin:1rem 0;text-align:center; font-size:0.93rem; color:var(--secondary-text);">or</div>
+
+        <div class="admin-login" style="margin-top:0.8rem; padding:0.8rem; border:1px solid var(--border-color); border-radius:8px; background: var(--subheader-bg);">
+            <h3 style="margin:0 0 0.6rem; font-size:1rem; color:var(--text-color);">Admin Login</h3>
+            <div class="form-group">
+                <label for="adminId">Admin ID</label>
+                <input type="text" id="adminId" placeholder="admin@drukauth.local" />
+            </div>
+            <div class="form-group">
+                <label for="adminPassword">Admin Password</label>
+                <input type="password" id="adminPassword" placeholder="******" />
+            </div>
+            <button id="adminLoginBtn" class="btn" style="background:#1f4d92;">Admin Sign In</button>
+        </div>
+
+        <div id="adminErrorMessage" class="error" style="display: none;"></div>
+
         <div class="link">
             <a href="signup.html">Don't have an account? Sign up</a>
         </div>

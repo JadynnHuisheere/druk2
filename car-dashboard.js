@@ -2,6 +2,86 @@ let lastScrollTop = 0;
 const mainContent = document.getElementById('mainContent');
 const stickyHeader = document.getElementById('stickyHeader');
 
+function isLocalHtmlPage(href) {
+    if (!href || href.startsWith('http') || href.startsWith('https')) return false;
+    if (href.startsWith('#')) return false;
+    const path = href.split('?')[0].split('#')[0];
+    return path.endsWith('.html');
+}
+
+async function loadPartialPage(url, options = {}) {
+    const { pushState = true } = options;
+    try {
+        const response = await fetch(url, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Failed to load ${url}: ${response.status}`);
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        const newMain = doc.querySelector('#mainContent') || doc.querySelector('.main-content');
+        if (!newMain) {
+            console.warn('Could not find main-content container in', url);
+            return;
+        }
+
+        // Swap the inner content
+        mainContent.innerHTML = newMain.innerHTML;
+
+        // Update page title and body data-page for simple routing state.
+        if (doc.title) document.title = doc.title;
+        if (doc.body && document.body) {
+            document.body.className = doc.body.className;
+            document.body.dataset.page = doc.body.dataset.page || '';
+        }
+
+        if (pushState) {
+            window.history.pushState({ page: url }, '', url);
+        }
+
+        // Rewire the new content interactive handlers.
+        installInternalNavHandlers();
+
+        // Reinitialize page-specific behaviors if returning to dashboard
+        // (e.g. marketplace view, search, pagination) based on data-page.
+        if (document.body.dataset.page === 'dashboard') {
+            initializeAuctionView();
+        }
+    } catch (e) {
+        console.error('Error during partial page load', e);
+    }
+}
+
+function installInternalNavHandlers() {
+    document.querySelectorAll('a').forEach(anchor => {
+        const href = anchor.getAttribute('href');
+        const target = anchor.getAttribute('target');
+
+        if (!isLocalHtmlPage(href)) return;
+        if (target && target !== '_self') return; // leave _blank etc alone
+
+        anchor.removeEventListener('click', anchor._partialClickListener);
+        anchor._partialClickListener = function(event) {
+            // Preserve in-page hash normal behavior on same page
+            if (!href || href.startsWith('#')) return;
+
+            event.preventDefault();
+            loadPartialPage(href);
+        };
+
+        anchor.addEventListener('click', anchor._partialClickListener);
+    });
+}
+
+window.addEventListener('popstate', function(event) {
+    const state = event.state;
+    if (state && state.page) {
+        loadPartialPage(state.page, { pushState: false });
+    }
+});
+
+// Initialize handlers right away for dashboard nav links
+installInternalNavHandlers();
+
 // Scroll detection for hiding/showing header
 mainContent.addEventListener('scroll', function() {
     const scrollTop = mainContent.scrollTop;
