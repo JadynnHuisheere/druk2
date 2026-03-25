@@ -220,6 +220,21 @@ body {
     color: var(--text-color);
 }
 
+.logout-btn {
+    background: var(--accent-color);
+    color: var(--accent-text);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.logout-btn:hover {
+    background: var(--gradient-end);
+}
+
 
 /* ========== MAIN LAYOUT ========== */
 .main-container {
