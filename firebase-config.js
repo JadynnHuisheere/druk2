@@ -1,13 +1,13 @@
 // firebase-config.js - Firebase configuration
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA-CAlLZJNrTvhGDY-0u82ba0ocba4UO44",
-  authDomain: "druktesting-a1ff1.firebaseapp.com",
-  projectId: "druktesting-a1ff1",
-  storageBucket: "druktesting-a1ff1.firebasestorage.app",
-  messagingSenderId: "240678806946",
-  appId: "1:240678806946:web:b621c0eba20979b56cfefb",
-  measurementId: "G-37RVXDHWPN"
+  apiKey: "AIzaSyAC3xaSFXMBH4Q5_3t_8ahitDqLKhBWOQA",
+  authDomain: "classicauction.firebaseapp.com",
+  projectId: "classicauction",
+  storageBucket: "classicauction.firebasestorage.app",
+  messagingSenderId: "621471898709",
+  appId: "1:621471898709:web:ea94de1b232bb7c82f48dc",
+  measurementId: "G-LVZ75CWDE9"
 };
 
 // Initialize Firebase
